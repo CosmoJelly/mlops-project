@@ -23,8 +23,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install pytest  # Assuming pytest is used for unit testing
 
       - name: Run Unit Tests
         run: |
-          pytest --maxfail=1 --disable-warnings -q  # Adjust pytest arguments as needed
+          pytest test.py
