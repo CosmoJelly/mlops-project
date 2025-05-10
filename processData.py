@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
+import os
 
 def preprocess_stock_data(csv_path: str) -> pd.DataFrame:
     # Load CSV
@@ -28,14 +29,20 @@ def preprocess_stock_data(csv_path: str) -> pd.DataFrame:
     # Drop initial NaNs from moving averages
     df = df.dropna()
 
-    # Optional: Normalize features for ML
+    # Normalize features for ML
     features_to_scale = ['open', 'high', 'low', 'close', 'volume', 'ma_7', 'ma_14']
     scaler = MinMaxScaler()
     df[features_to_scale] = scaler.fit_transform(df[features_to_scale])
+
+    # Save processed file
+    filename = os.path.basename(csv_path)
+    processed_filename = "data/processed_data.csv"
+    df.to_csv(processed_filename)
+    print(f"✅ Processed data saved to: {processed_filename}")
 
     return df
 
 # Example usage
 if __name__ == "__main__":
-    cleaned_df = preprocess_stock_data("data/AAPL_2025-05-08.csv")
-    print(cleaned_df.head())
+    cleaned_df = preprocess_stock_data("data/raw_data.csv")
+    print(cleaned_df.head())    

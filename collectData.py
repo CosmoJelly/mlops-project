@@ -37,9 +37,7 @@ if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     try:
         df = fetch_stock_data(SYMBOL, API_KEY)
-        filename = f"{SYMBOL}_{datetime.now().strftime('%Y-%m-%d')}.csv"
-        path = os.path.join(OUTPUT_DIR, filename)
-        df.to_csv(path)
-        print(f"[SUCCESS] Data saved to: {path}")
+        df.to_csv("data/raw_data.csv")
+        print(f"[SUCCESS] Data saved")
     except Exception as e:
         print(f"[ERROR] Failed to fetch or save data: {e}")
