@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 
 
 # Load the trained model (assuming it's saved as model.pkl)
-def load_model(model_path="models/stock_price_predictor.pkl"):
+def load_model(model_path="/Users/fasihrem/Downloads/University/Semester 8/MLOps/mlops-project/models/stock_price_predictor.pkl"):
     model = joblib.load(model_path)
     return model
 
