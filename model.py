@@ -67,7 +67,9 @@ with mlflow.start_run(experiment_id=experiment_id):
     joblib.dump(model, "models/stock_price_predictor.pkl")
 
     # Predict next closing price based on latest row
-    latest_input = df[['open', 'high', 'low', 'volume']].iloc[-1].values.reshape(
+    latest_input = df[['open', 'high',
+                       'low', 'volume']
+                       ].iloc[-1].values.reshape(
         1, -1
     )
     predicted_next = model.predict(latest_input)[0]
