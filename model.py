@@ -56,9 +56,11 @@ with mlflow.start_run(experiment_id=experiment_id):
 
     input_example = X_train.iloc[[0]]
 
-    mlflow.sklearn.log_model(model,
-                             "random forest model",
-                             input_example=input_example)
+    mlflow.sklearn.log_model(
+        model,
+        "random forest model",
+        input_example=input_example
+    )
 
     # Save model
     joblib.dump(model, "models/stock_price_predictor.pkl")

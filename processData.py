@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 import os
 
+
 def preprocess_stock_data(csv_path: str) -> pd.DataFrame:
     # Load CSV
     df = pd.read_csv(csv_path, parse_dates=True)
@@ -35,14 +36,14 @@ def preprocess_stock_data(csv_path: str) -> pd.DataFrame:
     df[features_to_scale] = scaler.fit_transform(df[features_to_scale])
 
     # Save processed file
-    filename = os.path.basename(csv_path)
     processed_filename = "data/processed_data.csv"
     df.to_csv(processed_filename)
     print(f"✅ Processed data saved to: {processed_filename}")
 
     return df
 
+
 # Example usage
 if __name__ == "__main__":
     cleaned_df = preprocess_stock_data("data/raw_data.csv")
-    print(cleaned_df.head())    
+    print(cleaned_df.head())

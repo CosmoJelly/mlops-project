@@ -1,12 +1,12 @@
 import requests
 import pandas as pd
 import os
-from datetime import datetime
 
 API_KEY = "P2B3G6LGD9G5A2P9"  # Replace this with your actual key
 SYMBOL = "AAPL"  # Stock symbol to track (e.g., Apple)
 OUTPUT_DIR = "data"  # Folder to save CSV
 API_URL = "https://www.alphavantage.co/query"
+
 
 # === FUNCTION TO FETCH DATA ===
 def fetch_stock_data(symbol, api_key):
@@ -17,7 +17,7 @@ def fetch_stock_data(symbol, api_key):
         "outputsize": "compact",  # use 'full' for full history
         "datatype": "json"
     }
-    print("[INFO] Fetching data...")
+    print("[INFO] Fetching data...")  # This is fine as it doesn't need placeholders
     response = requests.get(API_URL, params=params)
     data = response.json()
 
@@ -32,12 +32,13 @@ def fetch_stock_data(symbol, api_key):
     df = df.astype(float)
     return df
 
+
 # === MAIN ===
 if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     try:
         df = fetch_stock_data(SYMBOL, API_KEY)
-        df.to_csv("data/raw_data.csv")
-        print(f"[SUCCESS] Data saved")
+        df.to_csv(os.path.join(OUTPUT_DIR, "raw_data.csv"))
+        print("[SUCCESS] Data saved")
     except Exception as e:
         print(f"[ERROR] Failed to fetch or save data: {e}")
