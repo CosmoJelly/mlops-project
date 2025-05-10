@@ -1,0 +1,5 @@
+outs:
+- md5: ef67c087a6ea496fa99d310e8a477cd4
+  size: 646385
+  hash: md5
+  path: stock_price_predictor.pkl
