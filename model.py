@@ -10,7 +10,8 @@ import mlflow.sklearn
 
 # Load cleaned CSV
 df = pd.read_csv("data/processed_data.csv", parse_dates=True)
-df['date'] = pd.to_datetime(df['Unnamed: 0'])  # restore date if index was saved as column
+# Restore date if index was saved as a column
+df['date'] = pd.to_datetime(df['Unnamed: 0'])
 df.set_index('date', inplace=True)
 df.drop(columns=['Unnamed: 0'], inplace=True)
 
@@ -25,8 +26,9 @@ X = df[['open', 'high', 'low', 'volume']]
 y = df['next_close']
 
 # Split data
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, shuffle=False)
-
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, shuffle=False
+)
 
 experiment_name = "MLOps Semester Project 2025"
 mlflow.set_tracking_uri("http://localhost:5000/")
@@ -55,7 +57,6 @@ with mlflow.start_run(experiment_id=experiment_id):
     mlflow.log_metric("mse", mse)
 
     input_example = X_train.iloc[[0]]
-
     mlflow.sklearn.log_model(
         model,
         "random forest model",
@@ -66,6 +67,8 @@ with mlflow.start_run(experiment_id=experiment_id):
     joblib.dump(model, "models/stock_price_predictor.pkl")
 
     # Predict next closing price based on latest row
-    latest_input = df[['open', 'high', 'low', 'volume']].iloc[-1].values.reshape(1, -1)
+    latest_input = df[['open', 'high', 'low', 'volume']].iloc[-1].values.reshape(
+        1, -1
+    )
     predicted_next = model.predict(latest_input)[0]
     print(f"Predicted next close: {predicted_next:.2f}")

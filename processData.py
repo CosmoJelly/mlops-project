@@ -1,6 +1,5 @@
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
-import os
 
 
 def preprocess_stock_data(csv_path: str) -> pd.DataFrame:
@@ -31,7 +30,9 @@ def preprocess_stock_data(csv_path: str) -> pd.DataFrame:
     df = df.dropna()
 
     # Normalize features for ML
-    features_to_scale = ['open', 'high', 'low', 'close', 'volume', 'ma_7', 'ma_14']
+    features_to_scale = [
+        'open', 'high', 'low', 'close', 'volume', 'ma_7', 'ma_14'
+    ]
     scaler = MinMaxScaler()
     df[features_to_scale] = scaler.fit_transform(df[features_to_scale])
 

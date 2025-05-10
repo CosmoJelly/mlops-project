@@ -17,7 +17,7 @@ def fetch_stock_data(symbol, api_key):
         "outputsize": "compact",  # use 'full' for full history
         "datatype": "json"
     }
-    print("[INFO] Fetching data...")  # This is fine as it doesn't need placeholders
+    print("[INFO] Fetching data...")
     response = requests.get(API_URL, params=params)
     data = response.json()
 
@@ -38,7 +38,9 @@ if __name__ == "__main__":
     os.makedirs(OUTPUT_DIR, exist_ok=True)
     try:
         df = fetch_stock_data(SYMBOL, API_KEY)
-        df.to_csv(os.path.join(OUTPUT_DIR, "raw_data.csv"))
+        df.to_csv(
+            os.path.join(OUTPUT_DIR, "raw_data.csv")
+        )
         print("[SUCCESS] Data saved")
     except Exception as e:
         print(f"[ERROR] Failed to fetch or save data: {e}")
