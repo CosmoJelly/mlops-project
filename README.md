@@ -130,7 +130,3 @@ We welcome contributions! To contribute:
 3. Commit changes and submit a pull request.
 
 ---
-
-## 🛡️ License
-
-This repository is licensed under the [MIT License](LICENSE).
