@@ -31,8 +31,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
         run: |
-          dvc remote modify s3remote access_key_id "$AWS_ACCESS_KEY_ID"
-          dvc remote modify s3remote secret_access_key "$AWS_SECRET_ACCESS_KEY"
+          dvc remote modify s3_remote access_key_id "$AWS_ACCESS_KEY_ID"
+          dvc remote modify s3_remote secret_access_key "$AWS_SECRET_ACCESS_KEY"
 
       - name: 📥 Pull DVC data
         run: |
