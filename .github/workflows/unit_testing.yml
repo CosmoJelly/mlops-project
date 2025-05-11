@@ -9,22 +9,20 @@ on:
       - main
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
+      - name: Set Up Python
+        uses: actions/setup-python@v3
         with:
-          python-version: '3.10'
+          python-version: "3.13"
 
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install pytest
+      - name: Install Dependencies
+        run: pip3 install pandas scikit-learn pytest
 
-      - name: Run Unit Tests
-        run: |
-          pytest test.py
+      - name: Run Pytest
+        run: pytest tests/
+        
