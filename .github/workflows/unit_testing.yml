@@ -21,7 +21,7 @@ jobs:
           python-version: "3.13"
 
       - name: Install Dependencies
-        run: pip3 install pandas scikit-learn pytest
+        run: pip3 install pandas scikit-learn pytest mlflow joblib
 
       - name: Run Pytest
         run: pytest test.py
