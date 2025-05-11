@@ -21,7 +21,26 @@ jobs:
           python-version: "3.13"
 
       - name: Install Dependencies
-        run: pip3 install pandas scikit-learn pytest mlflow joblib
+        run: |
+          pip3 install pandas scikit-learn pytest mlflow joblib
+          pip install dvc[s3]
+
+      - name: Configure DVC remote
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+        run: |
+          dvc init
+          dvc 
+          dvc remote modify s3remote access_key_id "$AWS_ACCESS_KEY_ID"
+          dvc remote modify s3remote secret_access_key "$AWS_SECRET_ACCESS_KEY"
+
+      - name: 📥 Pull DVC data
+        run: |
+          dvc pull
+          ls -R data/
+
 
       - name: Run Pytest
         run: pytest test.py
