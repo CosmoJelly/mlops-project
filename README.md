@@ -22,15 +22,19 @@ A cutting-edge **Machine Learning Operations (MLOps)** project that brings best 
 
 ```
 mlops-project/
+├── .github/
+    ├── workflows             # Github Actions files
+├── .dvc/                     # Internal Metadata for tracked objects
 ├── dags/                     # Airflow DAGs for orchestration
 ├── models/                   # Pre-trained models and outputs
-├── src/                      # Source code for ML pipelines
-│   ├── data/                 # Data preprocessing scripts
-│   ├── training/             # Model training scripts
-│   ├── evaluation/           # Model evaluation scripts
-│   └── deployment/           # Deployment scripts
-├── tests/                    # Unit and integration tests
-├── docker/                   # Docker configurations
+├── mlruns/                   # Metadata and Tracking for ML Experiments
+├── data/                     # Data preprocessing scripts
+├── test.py                   # Unit and integration tests
+├── model.py                  # ML Model
+├── collectData.py            # Data Collection pipeline
+├── processData.py            # Data Processing pipeline
+├── Dockerfile                # Docker configurations
+├── Jenkinsfile               # Jenkins configurations
 ├── requirements.txt          # Python dependencies
 └── README.md                 # Project documentation
 ```
