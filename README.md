@@ -49,7 +49,7 @@ mlops-project/
 
 ### Prerequisites
 
-1. Install **Python 3.8+** and **pip**.
+1. Install **Python 3.8+** and **pip**, do not use any version higher than **Python 3.11**.
 2. Install **Docker** for containerized workflows.
 3. Install Apache Airflow:
    ```bash
@@ -104,7 +104,7 @@ python src/deployment/deploy_model.py
 
 Run unit tests to ensure code quality:
 ```bash
-pytest tests/
+pytest test.py
 ```
 
 ---
