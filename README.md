@@ -5,9 +5,9 @@
 A cutting-edge **Machine Learning Operations (MLOps)** project that brings best practices of CI/CD pipelines, model deployment, monitoring, and retraining workflows to life! This repository is designed to streamline the end-to-end lifecycle of machine learning projects.
 
 # Created by
-**Fasih Ur Rehman · 21I-1705**
-**Waleed Noman · 21I-2675**
-**Muhammad Abubakar Siddiq · 21I-2742**
+- **Fasih Ur Rehman · 21I-1705**
+- **Waleed Noman · 21I-2675**
+- **Muhammad Abubakar Siddiq · 21I-2742**
 
 ---
 
