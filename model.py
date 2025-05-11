@@ -2,6 +2,7 @@ import pandas as pd
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error
+from sklearn.metrics import r2_score
 import joblib
 
 import mlflow
@@ -74,3 +75,6 @@ with mlflow.start_run(experiment_id=experiment_id):
     )
     predicted_next = model.predict(latest_input)[0]
     print(f"Predicted next close: {predicted_next:.2f}")
+
+    r2 = r2_score(y_test, y_pred)
+    print(f"accuracy: {r2}")
