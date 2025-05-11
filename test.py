@@ -1,15 +1,15 @@
 import pytest
-from sklearn.metrics import r2_score
 from main import load_and_prepare_data, train_and_log_model
+from sklearn.metrics import mean_squared_error
 
-# Run the pipeline once for testing
-(X_train, X_test, y_train, y_test), _ = load_and_prepare_data()
-model, _, _, _ = train_and_log_model(X_train, X_test, y_train, y_test)
+@pytest.fixture(scope="module")
+def model_and_data():
+    (X_train, X_test, y_train, y_test), df = load_and_prepare_data()
+    model, X_test, y_test, y_pred = train_and_log_model(X_train, X_test, y_train, y_test)
+    return model, X_test, y_test, y_pred
 
-def test_model_r2():
-    y_pred = model.predict(X_test)
-    r2 = r2_score(y_test, y_pred)
-    assert r2 > 0.4, f"Expected R² > 0.4 but got {r2:.2f}"
-
-if __name__ == "__main__":
-    pytest.main()
+def test_model_mse(model_and_data):
+    _, _, y_test, y_pred = model_and_data
+    mse = mean_squared_error(y_test, y_pred)
+    print(f"[TEST] MSE: {mse}")
+    assert mse < 25, "Model MSE is too high – accuracy might be poor."
