@@ -1,6 +1,6 @@
 import pytest
 from sklearn.metrics import r2_score
-from model import model, X_test, y_test
+from main import model, X_test, y_test
 
 def testModel():
     y_pred = model.predict(X_test)

@@ -10,7 +10,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 # === Import your local functions ===
 from collectData import main as collect_data_main
 from processData import main as process_data_main
-from model import main as train_model_main
+from main import main as train_model_main
 
 default_args = {
     'start_date': datetime(2024, 1, 1),
